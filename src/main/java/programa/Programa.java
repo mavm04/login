@@ -4,6 +4,8 @@
  */
 package programa;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author miguel
@@ -13,8 +15,11 @@ public class Programa extends javax.swing.JFrame {
     /**
      * Creates new form Programa
      */
+    private ArrayList<String> dataUsers = new ArrayList<String>();
+    
     public Programa() {
         initComponents();
+        dataUsers = UtilidadesFichero.leerFichero();
     }
 
     /**
@@ -29,10 +34,10 @@ public class Programa extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jTextFieldUsuario = new javax.swing.JTextField();
+        jPasswordFieldContrasenia = new javax.swing.JPasswordField();
+        jButtonLogin = new javax.swing.JButton();
+        jButtonSalir = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,19 +52,29 @@ public class Programa extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Contraseña:");
 
-        jTextField1.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField1.setForeground(new java.awt.Color(255, 153, 153));
+        jTextFieldUsuario.setBackground(new java.awt.Color(102, 102, 102));
+        jTextFieldUsuario.setForeground(new java.awt.Color(255, 153, 153));
 
-        jPasswordField1.setBackground(new java.awt.Color(102, 102, 102));
-        jPasswordField1.setForeground(new java.awt.Color(255, 153, 153));
+        jPasswordFieldContrasenia.setBackground(new java.awt.Color(102, 102, 102));
+        jPasswordFieldContrasenia.setForeground(new java.awt.Color(255, 153, 153));
 
-        jButton1.setBackground(new java.awt.Color(73, 73, 73));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Login");
+        jButtonLogin.setBackground(new java.awt.Color(73, 73, 73));
+        jButtonLogin.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonLogin.setText("Login");
+        jButtonLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonLoginMouseClicked(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(73, 73, 73));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Salir");
+        jButtonSalir.setBackground(new java.awt.Color(73, 73, 73));
+        jButtonSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSalir.setText("Salir");
+        jButtonSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonSalirMouseClicked(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(73, 73, 73));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -76,16 +91,16 @@ public class Programa extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPasswordField1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordFieldContrasenia)
+                    .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(jButton1)
+                .addComponent(jButtonLogin)
                 .addGap(37, 37, 37)
                 .addComponent(jButton3)
                 .addGap(39, 39, 39)
-                .addComponent(jButton2)
+                .addComponent(jButtonSalir)
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -93,16 +108,16 @@ public class Programa extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordFieldContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
+                    .addComponent(jButtonLogin)
+                    .addComponent(jButtonSalir)
                     .addComponent(jButton3))
                 .addGap(23, 23, 23))
         );
@@ -120,6 +135,16 @@ public class Programa extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSalirMouseClicked
+        dispose();
+        
+    }//GEN-LAST:event_jButtonSalirMouseClicked
+
+    private void jButtonLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonLoginMouseClicked
+        login();
+        System.out.println(login());
+    }//GEN-LAST:event_jButtonLoginMouseClicked
 
     /**
      * @param args the command line arguments
@@ -157,13 +182,37 @@ public class Programa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonLogin;
+    private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField jPasswordFieldContrasenia;
+    private javax.swing.JTextField jTextFieldUsuario;
     // End of variables declaration//GEN-END:variables
+    
+    public boolean login(){
+        
+        String user = jTextFieldUsuario.getText().trim();
+        char[] passw = jPasswordFieldContrasenia.getPassword();
+        String passwString = passw.toString();
+        System.out.println(passwString);
+        String userLogin = "";
+        
+        for (String data : dataUsers) {
+            if (data.contains(user)) {
+                userLogin = data;
+                String[] parts = data.split(";");
+                
+                if (parts[1].equalsIgnoreCase(passwString)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        
+        return false;
+    }
 }
