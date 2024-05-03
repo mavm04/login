@@ -1,26 +1,21 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package programa;
-
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author miguel
  */
-public class Programa extends javax.swing.JFrame {
+public class ProgramaRegistro extends javax.swing.JDialog {
 
     /**
-     * Creates new form Programa
+     * Creates new form ProgramaRegistro
      */
-    private ArrayList<String> dataUsers = new ArrayList<String>();
-
-    public Programa() {
+    public ProgramaRegistro(Programa parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        dataUsers = UtilidadesFichero.leerFichero();
     }
 
     /**
@@ -37,11 +32,12 @@ public class Programa extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextFieldUsuario = new javax.swing.JTextField();
         jPasswordFieldContrasenia = new javax.swing.JPasswordField();
-        jButtonLogin = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
         jButtonIrResgistro = new javax.swing.JButton();
+        jPasswordFieldRepetirContrasenia = new javax.swing.JPasswordField();
+        jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -51,7 +47,7 @@ public class Programa extends javax.swing.JFrame {
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Contraseña:");
+        jLabel2.setText("Repite contraseña:");
 
         jTextFieldUsuario.setBackground(new java.awt.Color(102, 102, 102));
         jTextFieldUsuario.setForeground(new java.awt.Color(255, 153, 153));
@@ -60,20 +56,6 @@ public class Programa extends javax.swing.JFrame {
         jPasswordFieldContrasenia.setBackground(new java.awt.Color(102, 102, 102));
         jPasswordFieldContrasenia.setForeground(new java.awt.Color(255, 153, 153));
         jPasswordFieldContrasenia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
-
-        jButtonLogin.setBackground(new java.awt.Color(73, 73, 73));
-        jButtonLogin.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonLogin.setText("Login");
-        jButtonLogin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonLoginMouseClicked(evt);
-            }
-        });
-        jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLoginActionPerformed(evt);
-            }
-        });
 
         jButtonSalir.setBackground(new java.awt.Color(73, 73, 73));
         jButtonSalir.setForeground(new java.awt.Color(255, 255, 255));
@@ -92,27 +74,44 @@ public class Programa extends javax.swing.JFrame {
                 jButtonIrResgistroMouseClicked(evt);
             }
         });
+        jButtonIrResgistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIrResgistroActionPerformed(evt);
+            }
+        });
+
+        jPasswordFieldRepetirContrasenia.setBackground(new java.awt.Color(102, 102, 102));
+        jPasswordFieldRepetirContrasenia.setForeground(new java.awt.Color(255, 153, 153));
+        jPasswordFieldRepetirContrasenia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("Contraseña:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonIrResgistro)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonIrResgistro)
+                        .addGap(22, 22, 22)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jPasswordFieldContrasenia)
-                        .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonLogin)
-                        .addGap(33, 33, 33)
-                        .addComponent(jButtonSalir)))
+                        .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPasswordFieldRepetirContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonSalir)
+                        .addGap(55, 55, 55)))
                 .addGap(36, 36, 36))
         );
         jPanel1Layout.setVerticalGroup(
@@ -124,11 +123,14 @@ public class Programa extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordFieldContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                    .addComponent(jPasswordFieldContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonLogin)
+                    .addComponent(jPasswordFieldRepetirContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSalir)
                     .addComponent(jButtonIrResgistro))
                 .addGap(23, 23, 23))
@@ -152,31 +154,19 @@ public class Programa extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonSalirMouseClicked
 
-    private void jButtonLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonLoginMouseClicked
-
-        if (jTextFieldUsuario.getText().trim().isEmpty()
-                || jPasswordFieldContrasenia.getPassword().length == 0) {
-
-            JOptionPane.showMessageDialog(this,
-                    "No se pueden dejar campos vacios.");
-        } else if (login()) {
-            JOptionPane.showMessageDialog(this,
-                    "Ha entrado correctamente.");
-        } else if (!login()) {
-            JOptionPane.showMessageDialog(this,
-                    "Error en el login, no existe el usuario o la contraseña "
-                    + "es incorrecta.", "Error", 
-                    JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButtonLoginMouseClicked
-
     private void jButtonIrResgistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonIrResgistroMouseClicked
-        new ProgramaRegistro(this, true).setVisible(true);
+        
     }//GEN-LAST:event_jButtonIrResgistroMouseClicked
 
-    private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonLoginActionPerformed
+    private void jButtonIrResgistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIrResgistroActionPerformed
+       
+       String user = jTextFieldUsuario.getText().trim();
+       
+       char[] passw0 = jPasswordFieldContrasenia.getPassword();
+       char[] passw1 = jPasswordFieldRepetirContrasenia.getPassword();
+       
+       
+    }//GEN-LAST:event_jButtonIrResgistroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,55 +185,40 @@ public class Programa extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Programa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProgramaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Programa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProgramaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Programa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProgramaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Programa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProgramaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Programa().setVisible(true);
+                ProgramaRegistro dialog = new ProgramaRegistro(new Programa(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonIrResgistro;
-    private javax.swing.JButton jButtonLogin;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordFieldContrasenia;
+    private javax.swing.JPasswordField jPasswordFieldRepetirContrasenia;
     private javax.swing.JTextField jTextFieldUsuario;
     // End of variables declaration//GEN-END:variables
-
-    public boolean login() {
-
-        String user = jTextFieldUsuario.getText().trim();
-        char[] passw = jPasswordFieldContrasenia.getPassword();
-        String passwString = String.valueOf(passw);
-        System.out.println(passwString);
-        String userLogin = "";
-
-        for (String data : dataUsers) {
-
-            userLogin = data;
-            String[] parts = data.split(";");
-
-            if (parts[0].equalsIgnoreCase(user)
-                    && parts[1].equalsIgnoreCase(passwString)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        return false;
-    }
 }
