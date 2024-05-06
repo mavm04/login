@@ -4,9 +4,7 @@
  */
 package programa;
 
-import java.awt.List;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -41,13 +39,30 @@ public class UtilidadesFichero {
         return lines;
     }
 
-    public static void escribirFichero(String fichero) {
-        
+    public static void escribirFichero(ArrayList<String> fichero) {
+
+        try {
+            // Crear un BufferedWriter para escribir en el archivo
+            BufferedWriter escritor = new BufferedWriter(new FileWriter("usuarios.csv"));
+
+            // Escribir cada línea en el archivo
+            for (String linea : fichero) {
+                escritor.write(linea);
+                escritor.newLine(); // Agregar un salto de línea después de cada línea
+            }
+
+            // Cerrar el BufferedWriter
+            escritor.close();
+
+        } catch (IOException e) {
+            System.out.println("Ocurrió un error al sobrescribir el archivo: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     public static boolean registrarUsuario(String user, char[] passw0, char[] passw1) {
 
-        boolean loginCorrecto = true;
+        boolean registroCorrecto = true;
 
         ArrayList<String> lines = leerFichero();
 
@@ -58,32 +73,37 @@ public class UtilidadesFichero {
                 || passw1String.isEmpty()) {
 
             JOptionPane.showMessageDialog(null,
-                    "No puedes registrar un usuario con algun campo vacios.");
-            return !loginCorrecto;
+                    "No puedes registrar un usuario con algun campo vacio.");
+            return !registroCorrecto;
         }
 
         if (!passw0String.equals(passw1String)) {
 
             JOptionPane.showMessageDialog(null,
                     "Las contraseñas no coinciden.");
-            return !loginCorrecto;
+            return !registroCorrecto;
         } else {
+            ArrayList<String> listaTmp = new ArrayList<>();
 
             for (String line : lines) {
 
                 String[] parts = line.split(";");
-
+                
                 if (parts[0].equalsIgnoreCase(user)) {
 
-                    parts[1] = passw0String;
-
+                    String tmp = user + passw0String + "";
+                    listaTmp.add(tmp);
                 } else {
-                    String userData = user + ";" + passw0String;
-                    lines.add(userData);
+
+                    listaTmp.add(line);
                 }
             }
-        }
 
-        return true;
+            String userData = user + ";" + passw0String;
+            lines.add(userData);
+            escribirFichero(lines);
+            return registroCorrecto;
+
+        }
     }
 }
